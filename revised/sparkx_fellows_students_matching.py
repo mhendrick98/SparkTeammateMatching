@@ -32,32 +32,31 @@ def main(args):
 
 	df_fellows = pd.read_csv('fellows_sparkx.csv')
 	df_fellows = df_fellows.fillna(0)
-	df_students = pd.read_csv('students_sparkx.csv')
+	df_students = pd.read_csv('xlab_sparkx.csv')
 	df_students = df_students.fillna(0)
 
-
-	print(df_fellows.ix[0:0,2])
 	# 0th group of fellows
-	df_fellows_selected_columns_team_0 = pd.concat([df_fellows.ix[0:0,2], df_fellows.ix[0:0,129:214]],axis=1)
+	df_fellows_selected_columns_team_0 = pd.concat([df_fellows.ix[0:0,1], df_fellows.ix[0:0,2:]],axis=1)
 	print(df_fellows_selected_columns_team_0['Email'])
 	# 1st group of fellows
-	df_fellows_selected_columns_team_1 = pd.concat([df_fellows.ix[1:3,2], df_fellows.ix[1:3,129:214]],axis=1)
+	df_fellows_selected_columns_team_1 = pd.concat([df_fellows.ix[1:1,1], df_fellows.ix[1:1,2:]],axis=1)
 	# 2nd group of fellows
-	df_fellows_selected_columns_team_2 = pd.concat([df_fellows.ix[4:4,2], df_fellows.ix[4:4,129:214]],axis=1)
+	df_fellows_selected_columns_team_2 = pd.concat([df_fellows.ix[2:2,1], df_fellows.ix[2:2,2:]],axis=1)
 	# 3rd group of fellows
-	df_fellows_selected_columns_team_3 = pd.concat([df_fellows.ix[5:7,2], df_fellows.ix[5:7,129:214]],axis=1)
+	df_fellows_selected_columns_team_3 = pd.concat([df_fellows.ix[3:3,1], df_fellows.ix[3:3,2:]],axis=1)
 	# 4th group of fellows
-	df_fellows_selected_columns_team_4 = pd.concat([df_fellows.ix[8:8,2], df_fellows.ix[8:8,129:214]],axis=1)
+	df_fellows_selected_columns_team_4 = pd.concat([df_fellows.ix[4:4,1], df_fellows.ix[4:4,2:]],axis=1)
 	# 5th group of fellows
-	df_fellows_selected_columns_team_5 = pd.concat([df_fellows.ix[9:9,2], df_fellows.ix[9:9,129:214]],axis=1)
+	df_fellows_selected_columns_team_5 = pd.concat([df_fellows.ix[5:5,1], df_fellows.ix[5:5,2:]],axis=1)
 	# 6th group of fellows
-	df_fellows_selected_columns_team_6 = pd.concat([df_fellows.ix[10:11,2], df_fellows.ix[10:11,129:214]],axis=1)
+	df_fellows_selected_columns_team_6 = pd.concat([df_fellows.ix[6:6,1], df_fellows.ix[6:6,2:]],axis=1)
 	# 7th group of fellows
-	df_fellows_selected_columns_team_7 = pd.concat([df_fellows.ix[11:12,2], df_fellows.ix[11:12,129:214]],axis=1)
+	df_fellows_selected_columns_team_7 = pd.concat([df_fellows.ix[7:7,1], df_fellows.ix[7:7,2:]],axis=1)
 
 
-	df_students_selected_columns = pd.concat([df_students.ix[:,1], df_students.ix[:,35:120]],axis=1)
+	df_students_selected_columns = pd.concat([df_students.ix[:,2], df_students.ix[:,3:-7]],axis=1)
 	df_students_selected_column_names = df_students_selected_columns.columns.values
+
 
 
 	feature_vector_fellows_team_0 = create_feature_vector_of_fellows(df_fellows_selected_columns_team_0)
@@ -96,6 +95,7 @@ def main(args):
 	student_score_team_6_list = compute_each_student_scores(student_id_features_dict,feature_vector_fellows_team_6)
 	print('Computing score for team 7.')
 	student_score_team_7_list = compute_each_student_scores(student_id_features_dict,feature_vector_fellows_team_7)
+
 
 	print('Writing selections for team 0.')
 	write_tuple_list_to_csv('fellow1.csv',student_score_team_0_list)
