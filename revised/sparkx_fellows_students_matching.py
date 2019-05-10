@@ -27,12 +27,12 @@ def write_tuple_list_to_csv(filename,data):
 		for row in data:
 			csv_out.writerow(row)
 
-def main(args):
+def main(args, fellowsCSV, xlabCSV):
 	student_id_features_dict = {}
 
-	df_fellows = pd.read_csv('fellows_sparkx.csv')
+	df_fellows = pd.read_csv(fellowsCSV)
 	df_fellows = df_fellows.fillna(0)
-	df_students = pd.read_csv('xlab_sparkx.csv')
+	df_students = pd.read_csv(xlabCSV)
 	df_students = df_students.fillna(0)
 
 	num_of_fellows = 9
@@ -51,5 +51,5 @@ def main(args):
 
 
 if __name__ == '__main__':
-	main(sys.argv[1:])
+	main(sys.argv[1:], 'fellows_sparkx.csv', 'xlab_sparkx.csv')
 	print('Exiting main!')
