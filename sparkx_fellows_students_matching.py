@@ -13,7 +13,7 @@ def create_feature_vector_of_fellows(df):
 
 def compute_each_student_scores(student_dict,feature_vector_fellow):
 	student_score_list = []
-	for email, feat_vector_student in student_dict.iteritems():
+	for email, feat_vector_student in student_dict.items():
 		tup = (email,distance.euclidean(feat_vector_student, feature_vector_fellow))
 		student_score_list.append(tup)
 
@@ -21,7 +21,7 @@ def compute_each_student_scores(student_dict,feature_vector_fellow):
 	return student_score_list
 
 def write_tuple_list_to_csv(filename,data):
-	with open(filename,'wb') as out:
+	with open(filename,'w') as out:
 		csv_out=csv.writer(out)
 		csv_out.writerow(['email','distance_score'])
 		for row in data:
@@ -35,6 +35,8 @@ def main(args):
 	df_students = pd.read_csv('students_sparkx.csv')
 	df_students = df_students.fillna(0)
 
+
+	print(df_fellows.ix[0:0,2])
 	# 0th group of fellows
 	df_fellows_selected_columns_team_0 = pd.concat([df_fellows.ix[0:0,2], df_fellows.ix[0:0,129:214]],axis=1)
 	print(df_fellows_selected_columns_team_0['Email'])
